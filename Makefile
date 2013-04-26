@@ -9,18 +9,17 @@ endif
 JAVAC=$(JAVA_HOME)/bin/javac
 SRCS=$(wildcard src/*.java)
 
-NetLogoLite.jar:
-	curl -f -s -S 'http://ccl.northwestern.edu/netlogo/5.0.1/NetLogoLite.jar' -o NetLogoLite.jar
-
-table.jar table.jar.pack.gz: $(SRCS) manifest.txt NetLogoLite.jar Makefile
+table.jar: $(SRCS) manifest.txt NetLogoHeadless.jar Makefile
 	mkdir -p classes
-	$(JAVAC) -g -deprecation -Xlint:all -Xlint:-serial -Xlint:-path -encoding us-ascii -source 1.5 -target 1.5 -classpath NetLogoLite.jar -d classes $(SRCS)
+	$(JAVAC) -g -deprecation -Xlint:all -Xlint:-serial -Xlint:-path -encoding us-ascii -source 1.7 -target 1.7 -classpath NetLogoHeadless.jar:$(HOME)/.sbt/boot/scala-2.10.1/lib/scala-library.jar -d classes $(SRCS)
 	jar cmf manifest.txt table.jar -C classes .
-	pack200 --modification-time=latest --effort=9 --strip-debug --no-keep-file-order --unknown-attribute=strip table.jar.pack.gz table.jar
+
+NetLogoHeadless.jar:
+	curl -f -s -S 'http://ccl.northwestern.edu/devel/NetLogoHeadless-de4980d4.jar' -o NetLogoHeadless.jar
 
 table.zip: table.jar
 	rm -rf table
 	mkdir table
-	cp -rp table.jar table.jar.pack.gz README.md Makefile src manifest.txt table
+	cp -rp table.jar README.md Makefile src manifest.txt table
 	zip -rv table.zip table
 	rm -rf table

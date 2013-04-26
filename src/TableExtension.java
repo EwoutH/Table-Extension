@@ -13,6 +13,10 @@ import org.nlogo.api.DefaultReporter;
 import org.nlogo.api.DefaultCommand;
 
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public class TableExtension
     extends org.nlogo.api.DefaultClassManager {
@@ -30,7 +34,7 @@ public class TableExtension
     primManager.addPrimitive("to-list", new ToList());
   }
 
-  private static java.util.WeakHashMap<Table, Long> tables = new java.util.WeakHashMap<Table, Long>();
+  private static WeakHashMap<Table, Long> tables = new WeakHashMap<Table, Long>();
 
   private static long next = 0;
 
@@ -41,7 +45,7 @@ public class TableExtension
   // crossplatform.
 
   public static class Table
-      extends java.util.LinkedHashMap<Object, Object>
+      extends LinkedHashMap<Object, Object>
       // new NetLogo data types defined by extensions must implement
       // this interface
       implements org.nlogo.api.ExtensionObject {
@@ -61,7 +65,7 @@ public class TableExtension
 
     public void addAll(LogoList alist)
         throws ExtensionException {
-      for (Iterator it = alist.iterator(); it.hasNext();) {
+      for (Iterator<Object> it = alist.iterator(); it.hasNext();) {
         Object pair = it.next();
         if ((pair instanceof LogoList
             && ((LogoList) pair).size() < 2)
@@ -87,8 +91,7 @@ public class TableExtension
 
     public LogoList toList() {
       LogoListBuilder alist = new LogoListBuilder();
-      for (Iterator entries = entrySet().iterator(); entries.hasNext();) {
-        java.util.Map.Entry entry = (java.util.Map.Entry) entries.next();
+      for (Map.Entry<Object, Object> entry : entrySet()) {
         LogoListBuilder pair = new LogoListBuilder();
         pair.add(entry.getKey());
         pair.add(entry.getValue());
@@ -124,7 +127,7 @@ public class TableExtension
       if (size() != otherTable.size()) {
         return false;
       }
-      for (Iterator iter = keySet().iterator(); iter.hasNext();) {
+      for (Iterator<Object> iter = keySet().iterator(); iter.hasNext();) {
         Object key = iter.next();
         if (!otherTable.containsKey(key)
             || !org.nlogo.api.Equality.equals(get(key),
@@ -151,7 +154,7 @@ public class TableExtension
     return buffer;
   }
 
-  public void importWorld(java.util.List<String[]> lines, org.nlogo.api.ExtensionManager reader,
+  public void importWorld(List<String[]> lines, org.nlogo.api.ExtensionManager reader,
                           org.nlogo.api.ImportErrorHandler handler)
       throws ExtensionException {
     for (String[] line : lines) {
@@ -435,7 +438,7 @@ public class TableExtension
   }
 
   private static boolean containsOnlyValidKeys(LogoList list) {
-    for (Iterator it = list.iterator(); it.hasNext();) {
+    for (Iterator<Object> it = list.iterator(); it.hasNext();) {
       Object o = it.next();
       if (!isValidKey(o)) {
         return false;
