@@ -10,8 +10,8 @@ import org.nlogo.api.LogoListBuilder;
 import org.nlogo.api.ExtensionException;
 import org.nlogo.api.Argument;
 import org.nlogo.api.Context;
-import org.nlogo.api.DefaultReporter;
-import org.nlogo.api.DefaultCommand;
+import org.nlogo.api.Reporter;
+import org.nlogo.api.Command;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -169,7 +169,7 @@ public class TableExtension
 
   ///
 
-  public static class Clear extends DefaultCommand {
+  public static class Clear implements Command {
     public Syntax getSyntax() {
       return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType()});
@@ -187,7 +187,7 @@ public class TableExtension
     }
   }
 
-  public static class Get extends DefaultReporter {
+  public static class Get implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()},
@@ -213,7 +213,7 @@ public class TableExtension
     }
   }
 
-  public static class HasKey extends DefaultReporter {
+  public static class HasKey implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()},
@@ -233,7 +233,7 @@ public class TableExtension
     }
   }
 
-  public static class Keys extends DefaultReporter {
+  public static class Keys implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
@@ -252,7 +252,7 @@ public class TableExtension
     }
   }
 
-  public static class Length extends DefaultReporter {
+  public static class Length implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
@@ -271,7 +271,7 @@ public class TableExtension
     }
   }
 
-  public static class Make extends DefaultReporter {
+  public static class Make implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax(Syntax.WildcardType());
     }
@@ -283,7 +283,7 @@ public class TableExtension
 
   }
 
-  public static class Put extends DefaultCommand {
+  public static class Put implements Command {
     public Syntax getSyntax() {
       return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType(),
@@ -309,7 +309,7 @@ public class TableExtension
     }
   }
 
-  public static class Remove extends DefaultCommand {
+  public static class Remove implements Command {
     public Syntax getSyntax() {
       return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()});
@@ -327,7 +327,7 @@ public class TableExtension
     }
   }
 
-  public static class ToList extends DefaultReporter {
+  public static class ToList implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
@@ -348,7 +348,7 @@ public class TableExtension
   }
 
 
-  public static class FromList extends DefaultReporter {
+  public static class FromList implements Reporter {
     public Syntax getSyntax() {
       return SyntaxJ.reporterSyntax
           (new int[]{Syntax.ListType()},
