@@ -1,6 +1,7 @@
 package org.nlogo.extensions.table;
 
 import org.nlogo.core.Syntax;
+import org.nlogo.core.SyntaxJ;
 import org.nlogo.api.CompilerException;
 import org.nlogo.api.LogoException;
 import org.nlogo.api.LogoException;
@@ -170,12 +171,8 @@ public class TableExtension
 
   public static class Clear extends DefaultCommand {
     public Syntax getSyntax() {
-      return Syntax.commandSyntax
+      return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType()});
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public void perform(Argument args[], Context context)
@@ -192,13 +189,9 @@ public class TableExtension
 
   public static class Get extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()},
               Syntax.WildcardType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
@@ -222,13 +215,9 @@ public class TableExtension
 
   public static class HasKey extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()},
               Syntax.BooleanType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
@@ -246,13 +235,9 @@ public class TableExtension
 
   public static class Keys extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
               Syntax.ListType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
@@ -269,13 +254,9 @@ public class TableExtension
 
   public static class Length extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
               Syntax.NumberType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
@@ -292,11 +273,7 @@ public class TableExtension
 
   public static class Make extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax(Syntax.WildcardType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
+      return SyntaxJ.reporterSyntax(Syntax.WildcardType());
     }
 
     public Object report(Argument args[], Context context)
@@ -308,13 +285,9 @@ public class TableExtension
 
   public static class Put extends DefaultCommand {
     public Syntax getSyntax() {
-      return Syntax.commandSyntax
+      return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType(),
               Syntax.WildcardType()});
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public void perform(Argument args[], Context context)
@@ -338,12 +311,8 @@ public class TableExtension
 
   public static class Remove extends DefaultCommand {
     public Syntax getSyntax() {
-      return Syntax.commandSyntax
+      return SyntaxJ.commandSyntax
           (new int[]{Syntax.WildcardType(), Syntax.WildcardType()});
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public void perform(Argument args[], Context context)
@@ -360,13 +329,9 @@ public class TableExtension
 
   public static class ToList extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.WildcardType()},
               Syntax.ListType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
@@ -385,13 +350,9 @@ public class TableExtension
 
   public static class FromList extends DefaultReporter {
     public Syntax getSyntax() {
-      return Syntax.reporterSyntax
+      return SyntaxJ.reporterSyntax
           (new int[]{Syntax.ListType()},
               Syntax.WildcardType());
-    }
-
-    public String getAgentClassString() {
-      return "OTPL";
     }
 
     public Object report(Argument args[], Context context)
