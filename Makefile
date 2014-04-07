@@ -23,7 +23,7 @@ table.jar: $(SRCS) manifest.txt NetLogoHeadless.jar Makefile
 	jar cmf manifest.txt table.jar -C classes .
 
 NetLogoHeadless.jar:
-	curl -f -s -S 'http://dl.bintray.com/netlogo/NetLogoHeadless/org/nlogo/netlogoheadless/5.2.0-6a3f061/netlogoheadless-5.2.0-6a3f061.jar' -o NetLogoHeadless.jar
+	curl -f -s -S -L 'http://dl.bintray.com/netlogo/NetLogoHeadless/org/nlogo/netlogoheadless/5.2.0-6a3f061/netlogoheadless-5.2.0-6a3f061.jar' -o NetLogoHeadless.jar
 
 table.zip: table.jar
 	rm -rf table
