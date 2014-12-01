@@ -2,8 +2,7 @@ package org.nlogo.extensions.table;
 
 import org.nlogo.core.Syntax;
 import org.nlogo.core.SyntaxJ;
-import org.nlogo.api.CompilerException;
-import org.nlogo.api.LogoException;
+import org.nlogo.core.CompilerException;
 import org.nlogo.api.LogoException;
 import org.nlogo.api.LogoList;
 import org.nlogo.api.LogoListBuilder;
