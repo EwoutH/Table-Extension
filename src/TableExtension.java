@@ -65,7 +65,7 @@ public class TableExtension
 
     public void addAll(LogoList alist)
         throws ExtensionException {
-      for (Iterator<Object> it = alist.iterator(); it.hasNext();) {
+      for (Iterator<Object> it = alist.javaIterator(); it.hasNext();) {
         Object pair = it.next();
         if ((pair instanceof LogoList
             && ((LogoList) pair).size() < 2)
@@ -398,7 +398,7 @@ public class TableExtension
   }
 
   private static boolean containsOnlyValidKeys(LogoList list) {
-    for (Iterator<Object> it = list.iterator(); it.hasNext();) {
+    for (Iterator<Object> it = list.javaIterator(); it.hasNext();) {
       Object o = it.next();
       if (!isValidKey(o)) {
         return false;
